@@ -1,9 +1,9 @@
 package sameer.jbehave.webdriver.pages.google;
 
-import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import sameer.jbehave.webdriver.pages.PageTemplate;
 
 /**
@@ -21,6 +21,7 @@ public class HomePage extends PageTemplate {
 
     public HomePage(WebDriverProvider driverProvider) {
         super(driverProvider);
+        PageFactory.initElements(driverProvider.get(), this);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class HomePage extends PageTemplate {
 
     public void search(String keyword) {
         searchBox.sendKeys(keyword);
-        searchButton.click();
+
+        //searchButton.click();
     }
 }

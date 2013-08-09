@@ -1,8 +1,6 @@
 package sameer.jbehave.webdriver.pages.google;
 
 import org.jbehave.web.selenium.WebDriverProvider;
-import sameer.jbehave.webdriver.pages.google.HomePage;
-import sameer.jbehave.webdriver.pages.google.ResultsPage;
 
 /**
  * User: sameer
@@ -33,7 +31,7 @@ public class GooglePages {
 
     public ResultsPage resultsPage(){
 
-        if(resultsPage()==null){
+        if(resultsPage == null){
             resultsPage = new ResultsPage(driverProvider);
         }
 
