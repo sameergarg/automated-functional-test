@@ -33,7 +33,7 @@ public class WebJunitStories extends JUnitStories {
 
     private WebDriverProvider driverProvider = new PropertyWebDriverProvider();
     private WebDriverSteps lifecycleSteps = new PerStoriesWebDriverSteps(driverProvider); // or PerStoryWebDriverSteps(driverProvider)
-    private GooglePages googlePages = new GooglePages(driverProvider);
+    private GooglePages googlePages = new GooglePages();
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(500, 100);
 

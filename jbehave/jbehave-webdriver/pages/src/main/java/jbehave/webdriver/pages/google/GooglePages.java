@@ -42,5 +42,9 @@ public class GooglePages {
         return resultsPage;
     }
 
+    public void closeBrowser(){
+        webDriver.quit();
+    }
+
 
 }
