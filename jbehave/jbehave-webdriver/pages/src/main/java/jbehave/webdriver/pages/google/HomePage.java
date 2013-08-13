@@ -1,16 +1,18 @@
-package sameer.jbehave.webdriver.pages.google;
+package jbehave.webdriver.pages.google;
 
-import org.jbehave.web.selenium.WebDriverProvider;
+import jbehave.webdriver.pages.PageTemplate;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import sameer.jbehave.webdriver.pages.PageTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * User: sameer
  * Date: 09/08/2013
  * Time: 11:39
  */
+//@Page
 public class HomePage extends PageTemplate {
 
     @FindBy(id="gbqfq")
@@ -19,19 +21,20 @@ public class HomePage extends PageTemplate {
     @FindBy(id="gbqfba")
     private WebElement searchButton;
 
-    public HomePage(WebDriverProvider driverProvider) {
-        super(driverProvider);
-        PageFactory.initElements(driverProvider.get(), this);
+    @Autowired
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
+        PageFactory.initElements(webDriver, this);
     }
 
     @Override
     public void atPage() {
-        found(getTitle(), "Google");
+        found(webDriver.getTitle(), "Google");
     }
 
     public void search(String keyword) {
         searchBox.sendKeys(keyword);
 
-        //searchButton.click();
+        searchButton.click();
     }
 }

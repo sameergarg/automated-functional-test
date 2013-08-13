@@ -1,9 +1,9 @@
-package sameer.jbehave.webdriver.steps;
+package jbehave.webdriver.steps;
 
+import jbehave.webdriver.pages.google.GooglePages;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import sameer.jbehave.webdriver.pages.google.GooglePages;
 
 /**
  * User: sameer
@@ -26,7 +26,6 @@ public class GoogleSearchSteps {
     @When("I enter $keyword to search")
     public void searchGoogle(String keyword){
         googlePages.homePage().search(keyword);
-
     }
 
     @Then("I see results for $keyword")

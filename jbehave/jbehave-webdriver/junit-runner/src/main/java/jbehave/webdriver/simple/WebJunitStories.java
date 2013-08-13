@@ -1,31 +1,25 @@
-package sameer.jbehave.webdriver.core;
+package jbehave.webdriver.simple;
 
 import com.google.common.util.concurrent.MoreExecutors;
+import jbehave.webdriver.pages.google.GooglePages;
+import jbehave.webdriver.steps.GoogleSearchSteps;
 import org.jbehave.core.Embeddable;
-import org.jbehave.core.annotations.UsingEmbedder;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.Embedder;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
-import org.jbehave.core.junit.AnnotatedEmbedderRunner;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.SilentStepMonitor;
 import org.jbehave.web.selenium.*;
-import org.junit.runner.RunWith;
-import sameer.jbehave.webdriver.pages.google.GooglePages;
-import sameer.jbehave.webdriver.steps.GoogleSearchSteps;
 
-import static java.util.Arrays.asList;
-import static org.jbehave.core.reporters.Format.CONSOLE;
-import static org.jbehave.core.reporters.Format.HTML;
-import static org.jbehave.core.reporters.Format.TXT;
-import static org.jbehave.core.reporters.Format.XML;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
+import static org.jbehave.core.reporters.Format.*;
 
 /**
  * User: sameer
@@ -35,7 +29,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 //@RunWith(AnnotatedEmbedderRunner.class)
 //@UsingEmbedder(embedder = Embedder.class, generateViewAfterStories = true,
 //        ignoreFailureInStories = true, ignoreFailureInView = true)
-public class WebStories extends JUnitStories {
+public class WebJunitStories extends JUnitStories {
 
     private WebDriverProvider driverProvider = new PropertyWebDriverProvider();
     private WebDriverSteps lifecycleSteps = new PerStoriesWebDriverSteps(driverProvider); // or PerStoryWebDriverSteps(driverProvider)
@@ -43,7 +37,7 @@ public class WebStories extends JUnitStories {
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(500, 100);
 
-    public WebStories() {
+    public WebJunitStories() {
         // If configuring lifecycle per-stories, you need to ensure that you a same-thread executor
         if ( lifecycleSteps instanceof PerStoriesWebDriverSteps ){
             configuredEmbedder().useExecutorService(MoreExecutors.sameThreadExecutor());

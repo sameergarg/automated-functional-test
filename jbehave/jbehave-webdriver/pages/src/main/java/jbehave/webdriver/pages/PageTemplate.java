@@ -1,7 +1,6 @@
-package sameer.jbehave.webdriver.pages;
+package jbehave.webdriver.pages;
 
-import org.jbehave.web.selenium.WebDriverPage;
-import org.jbehave.web.selenium.WebDriverProvider;
+import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
@@ -14,10 +13,12 @@ import static org.junit.Assert.fail;
  * Date: 09/08/2013
  * Time: 11:41
  */
-public abstract class PageTemplate extends WebDriverPage {
+public abstract class PageTemplate {
 
-    public PageTemplate(WebDriverProvider driverProvider) {
-        super(driverProvider);
+    protected WebDriver webDriver;
+
+    public PageTemplate(WebDriver webDriver) {
+        this.webDriver = webDriver;
         atPage();
     }
 
@@ -27,7 +28,7 @@ public abstract class PageTemplate extends WebDriverPage {
     public abstract void atPage();
 
     public void found(String text) {
-        found(getPageSource(), text);
+        found(webDriver.getPageSource(), text);
     }
 
     public void found(String pageSource, String text) {
@@ -43,7 +44,7 @@ public abstract class PageTemplate extends WebDriverPage {
     }
 
     public void notFound(String text) {
-        notFound(getPageSource(), text);
+        notFound(webDriver.getPageSource(), text);
     }
 
     public void notFound(String pageSource, String text) {
