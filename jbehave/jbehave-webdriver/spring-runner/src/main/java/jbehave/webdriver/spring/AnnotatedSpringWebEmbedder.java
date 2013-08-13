@@ -34,7 +34,7 @@ public class AnnotatedSpringWebEmbedder extends InjectableEmbedder {
     }
 
     private List<String> storyPaths() {
-        return new StoryFinder(".jar").findPaths(codeLocationFromClass(this.getClass()), "**/*.story", "");
+        return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()), "**/*.story", "");
     }
 
 
