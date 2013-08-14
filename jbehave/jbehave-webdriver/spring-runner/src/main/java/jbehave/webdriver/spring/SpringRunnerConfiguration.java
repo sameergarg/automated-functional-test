@@ -1,5 +1,6 @@
 package jbehave.webdriver.spring;
 
+import jbehave.webdriver.pages.BrowserConfiguration;
 import jbehave.webdriver.pages.google.GooglePages;
 import jbehave.webdriver.steps.GoogleSearchSteps;
 import org.jbehave.core.configuration.spring.SpringStoryControls;
@@ -7,6 +8,7 @@ import org.jbehave.core.configuration.spring.SpringStoryReporterBuilder;
 import org.jbehave.core.parsers.RegexPrefixCapturingPatternParser;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,9 +24,12 @@ public class SpringRunnerConfiguration {
 
     private GoogleSearchSteps googleSearchSteps;
 
+    @Autowired
+    private BrowserConfiguration browserConfiguration;
+
     @Bean
     public GooglePages googlePages(){
-        googlePages = new GooglePages();
+        googlePages = new GooglePages(browserConfiguration);
         return googlePages;
     }
 

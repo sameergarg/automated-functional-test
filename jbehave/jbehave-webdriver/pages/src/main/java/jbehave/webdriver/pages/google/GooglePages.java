@@ -1,5 +1,6 @@
 package jbehave.webdriver.pages.google;
 
+import jbehave.webdriver.pages.BrowserConfiguration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -17,10 +18,16 @@ public class GooglePages {
 
     private ResultsPage resultsPage;
 
-    public GooglePages() {
-        FirefoxProfile firefoxProfile = new FirefoxProfile();
-        firefoxProfile.setPreference("javascript.enabled", false);
-        this.webDriver = new FirefoxDriver(firefoxProfile);
+    public GooglePages(BrowserConfiguration browserConfiguration) {
+
+        if(browserConfiguration.isJsEnabled()){
+            this.webDriver = new FirefoxDriver();
+        }else {
+            FirefoxProfile firefoxProfile = new FirefoxProfile();
+            firefoxProfile.setPreference("javascript.enabled", false);
+            this.webDriver = new FirefoxDriver(firefoxProfile);
+        }
+
     }
 
     public HomePage homePage(){
@@ -45,6 +52,5 @@ public class GooglePages {
     public void closeBrowser(){
         webDriver.quit();
     }
-
 
 }
